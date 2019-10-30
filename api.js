@@ -6,6 +6,5 @@ const request = axios.create({
 
 export const getFlags = async () => {
   const { data } = await request.get('/flags');
-  console.log(data);
   return data;
 };

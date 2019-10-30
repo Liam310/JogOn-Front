@@ -20,7 +20,7 @@ export default class App extends React.Component {
         <Home
           actualRoute={actualRoute}
           _watchPosition={this._watchPosition}
-          location={this.location}
+          locationUpdates={this.locationUpdates}
           markers={markers}
         />
       </View>
@@ -49,7 +49,7 @@ export default class App extends React.Component {
   };
 
   _watchPosition = async () => {
-    this.location = await Location.watchPositionAsync(
+    this.locationUpdates = await Location.watchPositionAsync(
       { distanceInterval: 1 },
       location => {
         this.setState(currentState => {
@@ -75,8 +75,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: Constants.statusBarHeight
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    // backgroundColor: 'pink'
   }
 });

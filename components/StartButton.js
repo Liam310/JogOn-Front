@@ -17,7 +17,7 @@ export default class StartButton extends React.Component {
   }
 
   handlePress = () => {
-    const { _watchPosition, location } = this.props;
+    const { _watchPosition, locationUpdates } = this.props;
     this.setState(
       currentState => {
         return { gettingLocation: !currentState.gettingLocation };
@@ -26,7 +26,7 @@ export default class StartButton extends React.Component {
         if (this.state.gettingLocation) {
           _watchPosition();
         } else {
-          location.remove();
+          locationUpdates.remove();
         }
       }
     );

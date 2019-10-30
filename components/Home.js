@@ -6,7 +6,7 @@ import StartButton from './StartButton';
 export default function Home({
   actualRoute,
   _watchPosition,
-  location,
+  locationUpdates,
   markers
 }) {
   return (
@@ -20,13 +20,17 @@ export default function Home({
           longitudeDelta: 0.0421
         }}
         style={styles.mapStyle}
+        showsMyLocationButton={true}
       >
         <Polyline coordinates={actualRoute} />
         {markers.map(({ latitude, longitude }, index) => {
           return <Marker coordinate={{ latitude, longitude }} key={index} />;
         })}
       </MapView>
-      <StartButton _watchPosition={_watchPosition} location={location} />
+      <StartButton
+        _watchPosition={_watchPosition}
+        locationUpdates={locationUpdates}
+      />
     </View>
   );
 }
@@ -34,7 +38,6 @@ export default function Home({
 const styles = StyleSheet.create({
   mapStyle: {
     width: Dimensions.get('window').width,
-    // height: Dimensions.get('window').height
     height: '80%'
   }
 });
