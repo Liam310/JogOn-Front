@@ -1,13 +1,23 @@
 import React from 'react';
-import { View } from 'react-native';
+import { Platform, View, StyleSheet } from 'react-native';
+import Constants from 'expo-constants';
+import * as Location from 'expo-location';
+import * as Permissions from 'expo-permissions';
+import Home from './components/Home';
 
 export default class App extends React.Component {
   state = {
-    errorMessage: null
+    errorMessage: null,
+    actualRoute: []
   };
 
   render() {
-    return <View style={styles.container}></View>;
+    const { actualRoute } = this.state;
+    return (
+      <View style={styles.container}>
+        <Home actualRoute={actualRoute} />
+      </View>
+    );
   }
 
   componentWillMount() {
@@ -29,4 +39,31 @@ export default class App extends React.Component {
       });
     }
   };
+
+  _watchPosition = async () => {
+    this.location = await Location.watchPositionAsync(
+      { distanceInterval: 1 },
+      location => {
+        this.setState(currentState => {
+          const newLocation = {
+            latitude: location.coords.latitude,
+            longitude: location.coords.longitude
+          };
+          return {
+            coordinates: [...currentState.coordinates, newLocation]
+          };
+        });
+      }
+    );
+  };
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: Constants.statusBarHeight
+    // alignItems: 'center',
+    // justifyContent: 'center',
+    // backgroundColor: 'pink'
+  }
+});

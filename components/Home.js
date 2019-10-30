@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { View, StyleSheet, Dimensions } from 'react-native';
 import MapView, { Polyline } from 'react-native-maps';
+import StartButton from './StartButton';
 
 export default function Home({ actualRoute }) {
   return (
     <View>
-      <Text>Hello</Text>
       <MapView
         showsUserLocation={true}
         initialRegion={{
@@ -18,6 +18,7 @@ export default function Home({ actualRoute }) {
       >
         <Polyline coordinates={actualRoute} />
       </MapView>
+      <StartButton />
     </View>
   );
 }
@@ -25,6 +26,7 @@ export default function Home({ actualRoute }) {
 const styles = StyleSheet.create({
   mapStyle: {
     width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height
+    // height: Dimensions.get('window').height
+    height: '80%'
   }
 });
