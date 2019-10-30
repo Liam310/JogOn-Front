@@ -8,7 +8,8 @@ import Home from './components/Home';
 export default class App extends React.Component {
   state = {
     errorMessage: null,
-    actualRoute: []
+    actualRoute: [],
+    markers: []
   };
 
   render() {
