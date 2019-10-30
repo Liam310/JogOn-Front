@@ -16,5 +16,19 @@ export default class StartButton extends React.Component {
     );
   }
 
-  handlePress = () => {};
+  handlePress = () => {
+    const { _watchPosition, location } = this.props;
+    this.setState(
+      currentState => {
+        return { gettingLocation: !currentState.gettingLocation };
+      },
+      () => {
+        if (this.state.gettingLocation) {
+          _watchPosition();
+        } else {
+          location.remove();
+        }
+      }
+    );
+  };
 }

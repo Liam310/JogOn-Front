@@ -15,7 +15,11 @@ export default class App extends React.Component {
     const { actualRoute } = this.state;
     return (
       <View style={styles.container}>
-        <Home actualRoute={actualRoute} />
+        <Home
+          actualRoute={actualRoute}
+          _watchPosition={this._watchPosition}
+          location={this.location}
+        />
       </View>
     );
   }
@@ -50,7 +54,7 @@ export default class App extends React.Component {
             longitude: location.coords.longitude
           };
           return {
-            coordinates: [...currentState.coordinates, newLocation]
+            actualRoute: [...currentState.actualRoute, newLocation]
           };
         });
       }

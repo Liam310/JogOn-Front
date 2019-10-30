@@ -3,7 +3,7 @@ import { View, StyleSheet, Dimensions } from 'react-native';
 import MapView, { Polyline } from 'react-native-maps';
 import StartButton from './StartButton';
 
-export default function Home({ actualRoute }) {
+export default function Home({ actualRoute, _watchPosition, location }) {
   return (
     <View>
       <MapView
@@ -18,7 +18,7 @@ export default function Home({ actualRoute }) {
       >
         <Polyline coordinates={actualRoute} />
       </MapView>
-      <StartButton />
+      <StartButton _watchPosition={_watchPosition} location={location} />
     </View>
   );
 }
