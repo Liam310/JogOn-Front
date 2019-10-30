@@ -4,6 +4,7 @@ import Constants from 'expo-constants';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 import Home from './components/Home';
+import * as api from './api';
 
 export default class App extends React.Component {
   state = {
@@ -13,13 +14,14 @@ export default class App extends React.Component {
   };
 
   render() {
-    const { actualRoute } = this.state;
+    const { actualRoute, markers } = this.state;
     return (
       <View style={styles.container}>
         <Home
           actualRoute={actualRoute}
           _watchPosition={this._watchPosition}
           location={this.location}
+          markers={markers}
         />
       </View>
     );
@@ -33,6 +35,7 @@ export default class App extends React.Component {
       });
     } else {
       this._getLocationAsync();
+      this._sendFlags();
     }
   }
 
@@ -60,6 +63,11 @@ export default class App extends React.Component {
         });
       }
     );
+  };
+
+  _sendFlags = async () => {
+    const { flags } = await api.getFlags();
+    this.setState({ markers: flags });
   };
 }
 

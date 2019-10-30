@@ -1,7 +1,7 @@
 import * as axios from 'axios';
 
 const request = axios.create({
-  baseURL: 'http:FillThisIn/api'
+  baseURL: 'http://172.26.44.25:9090/api'
 });
 
 export const getFlags = async () => {
