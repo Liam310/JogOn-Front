@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
 import MapView, { Polyline, Marker } from 'react-native-maps';
 import StartButton from './StartButton';
+import { FlagRef } from './FlagRef';
 
 export default function Home({
   actualRoute,
@@ -23,8 +24,14 @@ export default function Home({
         showsMyLocationButton={true}
       >
         <Polyline coordinates={actualRoute} />
-        {markers.map(({ latitude, longitude }, index) => {
-          return <Marker coordinate={{ latitude, longitude }} key={index} />;
+        {markers.map(({ id, latitude, longitude }, index) => {
+          return (
+            <Marker
+              image={FlagRef[id]}
+              coordinate={{ latitude, longitude }}
+              key={index}
+            />
+          );
         })}
       </MapView>
       <StartButton
