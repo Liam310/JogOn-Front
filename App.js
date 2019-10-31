@@ -12,7 +12,7 @@ export default class App extends React.Component {
     actualRoute: [],
     markers: [
       {
-        id: 1,
+        id: 2,
         latitude: 53.8008,
         longitude: -1.5491
       },
