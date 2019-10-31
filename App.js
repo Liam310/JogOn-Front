@@ -10,7 +10,23 @@ export default class App extends React.Component {
   state = {
     errorMessage: null,
     actualRoute: [],
-    markers: []
+    markers: [
+      {
+        id: 2,
+        latitude: 53.8008,
+        longitude: -1.5491
+      },
+      {
+        id: 5,
+        latitude: 53.8003,
+        longitude: -1.5491
+      },
+      {
+        id: 4,
+        latitude: 53.8006,
+        longitude: -1.5491
+      }
+    ]
   };
 
   render() {
@@ -20,7 +36,7 @@ export default class App extends React.Component {
         <Home
           actualRoute={actualRoute}
           _watchPosition={this._watchPosition}
-          locationUpdates={this.locationUpdates}
+          locationUpdates={this.location}
           markers={markers}
         />
       </View>
